@@ -1,0 +1,3 @@
+accent_primary=magenta
+accent_secondary=blue
+accent_tertiary=red
