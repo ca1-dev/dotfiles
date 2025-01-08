@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "type": "full",
+  "values": {
+    "p:0:i18n.format.datetime": "DD/MM/YYYY, HH:MM:ss",
+    "p:0:i18n.format.date": "DD/MM/YYYY",
+    "p:0:i18n.format.time": "HH:MM",
+
+    "p:0:layout.side-nav.show-rec-channels": 0,
+    "p:0:layout.hide-discover-luna": true,
+    "p:0:layout.turbo-cta": false,
+    "p:0:layout.prime-offers": false,
+
+    "p:0:directory.hide-recommended": true,
+    "p:0:directory.default-sort": "VIEWER_COUNT",
+
+    "p:0:channel.hide-unfollow": true,
+    "p:0:channel.hide-live-indicator": true,
+
+    "p:0:metadata.stream-delay-warning": 5,
+    "p:0:metadata.player-stats": true,
+
+    "p:0:player.home.autoplay": false,
+
+    "p:0:chat.replies.style": 2,
+    "p:0:chat.filtering.display-deleted": "DETAILED",
+    "p:0:chat.filtering.deleted-style": 0,
+    "p:0:chat.filtering.ignore-clear": true,
+    "p:0:chat.filtering.remove-deleted": 0,
+    "p:0:chat.points.auto-rewards": true,
+    "p:0:chat.drops.auto-rewards": true,
+    "p:0:chat.timestamp-format": "H:mm",
+
+    "p:0:addon.inlinetab.no_mentions": true,
+    "p:0:addon.inlinetab.tips": false,
+    "p:0:addon.inlinetab.no_commands": false,
+
+    "addons.enabled": [
+      "7tv-emotes",
+      "ffzap-core",
+      "ffzap-bttv",
+      "clip-confirm",
+      "inline-tab-completion"
+    ]
+  }
+}
