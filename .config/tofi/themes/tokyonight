@@ -1,0 +1,5 @@
+background-color=16161e
+text-color=c0caf5
+selection-color=7dcfff
+
+include = ../config
