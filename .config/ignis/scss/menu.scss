@@ -1,0 +1,43 @@
+.menu-header {
+  padding: 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.menu-header-separator {
+  min-width: 0.5rem;
+}
+
+.menu-separator {
+  min-height: $content-padding;
+}
+
+.slider-container {
+  padding: 0.5rem 0.5rem;
+}
+
+.slider trough {
+  background-color: $primary-container;
+  margin-left: 0.5rem;
+  min-height: 1rem;
+  border-radius: 10rem;
+}
+
+.slider trough highlight {
+  background-color: $primary;
+  border-radius: 10rem;
+}
+
+.audio-device-entry {
+  @include hover($surface);
+  border-radius: $border-radius-button;
+  padding: 0.25rem 0.5rem;
+
+  &.active {
+    @include hover($primary);
+    color: $on-primary;
+  }
+}
+
+.audio-device-entry-label {
+  margin: 0 0 0 0.5rem;
+}

@@ -1,0 +1,39 @@
+@mixin hover($bg) {
+  background-color: $bg;
+
+  &:hover {
+    background-color: darken($bg, 5%);
+  }
+
+  transition-duration: 0.35s;
+  transition-property: color, background-color;
+  transition-timing-function: cubic-bezier(0.3, 0.9, 0.2, 1.05);
+}
+
+@mixin shadow {
+  box-shadow: 0 0px 2px 1.5px $shadow;
+}
+
+.floating-window {
+  @include shadow;
+  background-color: $surface;
+  padding: $content-padding;
+  color: $on-surface;
+  margin: $gaps-in $gaps-out $gaps-out $gaps-out;
+  border-radius: $border-radius;
+}
+
+tooltip {
+  @include shadow;
+  all: unset;
+  background-color: $surface;
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius-button;
+}
+
+popover {
+  background-color: $surface;
+  padding: $content-padding;
+  border-radius: $border-radius;
+  font-size: 1rem;
+}

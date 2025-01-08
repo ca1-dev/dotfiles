@@ -1,0 +1,22 @@
+$gaps-in: 4px;
+$gaps-out: 8px;
+
+$content-padding: 1rem;
+
+$border-radius: 16px;
+$border-radius-inner: 8px;
+$border-radius-button: 10rem;
+
+$border-width: 2px;
+
+* {
+  all: unset;
+  font-family: "Inter";
+  font-feature-settings: "tnum";
+  font-weight: 600;
+}
+
+@import "scss/lib.scss";
+@import "scss/bar.scss";
+@import "scss/menu.scss";
+@import "scss/notifications.scss";

@@ -1,0 +1,63 @@
+.notification-center .menu-header {
+  padding-right: 0;
+}
+
+.control-center .notification-center {
+  background-color: $surface-container-low;
+  border-radius: $border-radius $border-radius $border-radius-inner
+    $border-radius-inner;
+  padding: $content-padding;
+
+  .notification-card {
+    background-color: $surface;
+  }
+}
+
+.notification-center {
+  min-height: 500px;
+
+  .notification-card {
+    background-color: $surface-container-low;
+  }
+}
+
+.notification-popup {
+  margin: $gaps-in $gaps-out $gaps-out $gaps-out;
+  min-width: 25rem;
+
+  .notification-card {
+    @include shadow;
+    background: $surface;
+  }
+}
+
+.notification-clear-all,
+.notification-dnd {
+  @include hover($surface-container-high);
+  border-radius: 10rem;
+  padding: 0.25rem 1rem;
+}
+
+.notification-card {
+  border-radius: $border-radius;
+  padding: $content-padding;
+  margin-bottom: $content-padding;
+}
+
+.notification-content {
+  padding: 0 0.5rem;
+}
+
+.notification-close {
+  @include hover($surface-container-high);
+  color: $on-surface;
+  border-radius: $border-radius-button;
+  padding: 0.25rem;
+}
+
+.notification-action {
+  @include hover($surface-container-high);
+  border-radius: $border-radius-button;
+  padding: 0.25rem 0.25rem;
+  margin-top: 0.5rem;
+}
