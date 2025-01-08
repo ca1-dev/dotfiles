@@ -1,0 +1,16 @@
+font-family = FiraCode Nerd Font
+font-style = semibold
+
+theme = tokyonight
+
+background-opacity = 0.9
+
+cursor-style = underline
+
+command = tmux attach -t default || tmux new-session -s default
+
+window-padding-x = 10
+window-padding-y = 10
+
+window-decoration = false
+window-theme = ghostty
