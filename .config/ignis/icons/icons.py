@@ -1,3 +1,4 @@
+from ignis.options import options
 from ignis.services.audio import AudioService
 from ignis.services.notifications import NotificationService
 from ignis.widgets import Widget
@@ -72,7 +73,7 @@ def AudioDeviceIcon(type) -> Widget.Icon:
 def NotificationsIcon() -> Widget.Box:
     dndOn = Widget.Icon(
         image=icons["notifications"]["tray"]["dnd"],
-        visible=notifications.bind("dnd"),
+        visible=options.notifications.bind("dnd"),
     )
     dndOff = Widget.Icon(
         image=notifications.bind(
@@ -82,7 +83,10 @@ def NotificationsIcon() -> Widget.Box:
                 if len(notifications) > 0 else
                 icons["notifications"]["tray"]["empty"]
         ),
-        visible=notifications.bind("dnd", lambda dndEnabled: not dndEnabled),
+        visible=options.notifications.bind(
+            "dnd",
+            lambda dndEnabled: not dndEnabled,
+        ),
     )
     return Widget.Box(
         child=[

@@ -1,5 +1,6 @@
 from gi.repository import GLib
 from icons import icons
+from ignis.options import options
 from ignis.services.notifications import Notification, NotificationService
 from ignis.utils import Utils
 from ignis.widgets import Widget
@@ -60,7 +61,8 @@ class NotificationList(Widget.Box):
 def NotificationCenter(css_classes: list[str] = [], **kwargs) -> Widget.Box:
     notificationCount = Widget.Label(
         label=notifications.bind(
-            "notifications", lambda value: str(len(value))
+            "notifications",
+            lambda value: str(len(value)),
         ),
     )
 
@@ -76,7 +78,7 @@ def NotificationCenter(css_classes: list[str] = [], **kwargs) -> Widget.Box:
 
     dndButton = Widget.Button(
         child=Widget.Icon(
-            image=notifications.bind(
+            image=options.notifications.bind(
                 "dnd",
                 lambda dndEnabled:
                     icons["notifications"]["tray"]["empty"]
@@ -84,7 +86,8 @@ def NotificationCenter(css_classes: list[str] = [], **kwargs) -> Widget.Box:
                     icons["notifications"]["tray"]["dnd"]
             )
         ),
-        on_click=lambda _: notifications.set_dnd(not notifications.dnd),
+        on_click=lambda _:
+            options.notifications.set_dnd(not options.notifications.dnd),
         css_classes=["notification-dnd"],
     )
 
