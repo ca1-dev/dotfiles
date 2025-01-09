@@ -2,7 +2,7 @@
 accent_primary=blue
 accent_secondary=magenta
 accent_tertiary=magenta
-source ~/.config/zsh/themes/$THEME.zsh
+source ~/.config/zsh/themes/$THEME.zsh 2> /dev/null
 
 # completion
 autoload -Uz compinit && compinit
