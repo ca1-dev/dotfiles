@@ -41,8 +41,8 @@ local act = wezterm.action
 config.leader = { key = 'Space', mods = 'CTRL', }
 config.keys = {
     { key = '+', mods = 'SHIFT|CTRL', action = act.IncreaseFontSize, },
-    { key = '-', mods = 'SHIFT|CTRL', action = act.DecreaseFontSize, },
-    { key = '0', mods = 'SHIFT|CTRL', action = act.ResetFontSize, },
+    { key = '_', mods = 'SHIFT|CTRL', action = act.DecreaseFontSize, },
+    { key = ')', mods = 'SHIFT|CTRL', action = act.ResetFontSize, },
 
     { key = 'c', mods = 'SHIFT|CTRL', action = act.CopyTo('Clipboard'), },
     { key = 'c', mods = 'SUPER',      action = act.CopyTo('Clipboard'), },
