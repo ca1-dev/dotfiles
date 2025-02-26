@@ -27,7 +27,6 @@ config.bold_brightens_ansi_colors = false
 config.default_cursor_style = 'SteadyUnderline'
 config.cursor_thickness = '1pt'
 config.enable_tab_bar = false
-config.window_decorations = 'RESIZE'
 config.window_padding = {
     left = 10,
     right = 10,
@@ -54,11 +53,6 @@ config.keys = {
     { key = 'r', mods = 'SHIFT|CTRL', action = act.ReloadConfiguration, },
     { key = 'n', mods = 'SUPER',      action = act.SpawnWindow, },
 }
-
--- fix things on wayland
-config.enable_wayland = false
-config.front_end = 'WebGpu'
-config.webgpu_power_preference = 'HighPerformance'
 
 multiplexing(config)
 
