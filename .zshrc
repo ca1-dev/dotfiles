@@ -31,6 +31,7 @@ setopt hist_find_no_dups
 alias la='ls -A'
 alias mv='mv -i'
 alias gs='git status'
+alias gl='git log --oneline --graph'
 alias dev='nix develop -c zsh'
 alias pfetch='PF_INFO="ascii title os shell wm editor palette" pfetch'
 
