@@ -48,10 +48,8 @@ config.keys = {
     { key = 'v', mods = 'SHIFT|CTRL', action = act.PasteFrom('Clipboard'), },
     { key = 'v', mods = 'SUPER',      action = act.PasteFrom('Clipboard'), },
 
-    { key = 'l', mods = 'SHIFT|CTRL', action = act.ShowDebugOverlay, },
     { key = 'p', mods = 'SHIFT|CTRL', action = act.ActivateCommandPalette, },
     { key = 'r', mods = 'SHIFT|CTRL', action = act.ReloadConfiguration, },
-    { key = 'n', mods = 'SUPER',      action = act.SpawnWindow, },
 }
 
 multiplexing(config)
