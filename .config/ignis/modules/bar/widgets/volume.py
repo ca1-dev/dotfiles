@@ -1,6 +1,6 @@
 from .dropdownwidget import DropdownWidget
 from icons import AudioDeviceIcon
-from ignis.widgets import Widget
+from ignis import widgets
 from modules.widgets import DeviceMenu, MenuHeader, MenuSeparator, VolumeSlider
 
 
@@ -15,7 +15,7 @@ class VolumeWidget(DropdownWidget):
             monitor=monitor,
             icon=AudioDeviceIcon("speaker"),
             child=[
-                MenuHeader(child=[Widget.Label(label="Volume")]),
+                MenuHeader(child=[widgets.Label(label="Volume")]),
                 VolumeSlider("speaker"),
                 VolumeSlider("microphone"),
                 MenuSeparator(),

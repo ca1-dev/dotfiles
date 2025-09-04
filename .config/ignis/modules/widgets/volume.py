@@ -1,6 +1,6 @@
 from icons import icons, AudioDeviceIcon
+from ignis import widgets
 from ignis.services.audio import AudioService, Stream
-from ignis.widgets import Widget
 from modules.widgets import MenuHeader, MenuHeaderSeparator
 from typing import Literal
 
@@ -12,10 +12,10 @@ MENU_TITLES = {
 }
 
 
-def DeviceItem(stream: Stream, streamType: Literal["speaker", "microphone"], css_classes: list[str] = [], **kwargs) -> Widget.Button:
-    icon = Widget.Icon(image=icons["audio"][streamType]["menu_icon"])
+def DeviceItem(stream: Stream, streamType: Literal["speaker", "microphone"], css_classes: list[str] = [], **kwargs) -> widgets.Button:
+    icon = widgets.Icon(image=icons["audio"][streamType]["menu_icon"])
 
-    deviceName = Widget.Label(
+    deviceName = widgets.Label(
         ellipsize="end",
         max_width_chars=30,
         halign="start",
@@ -23,9 +23,9 @@ def DeviceItem(stream: Stream, streamType: Literal["speaker", "microphone"], css
         css_classes=["audio-device-entry-label"],
     )
 
-    return Widget.Button(
+    return widgets.Button(
         hexpand=True,
-        child=Widget.Box(
+        child=widgets.Box(
             child=[
                 icon,
                 deviceName,
@@ -46,16 +46,16 @@ def DeviceItem(stream: Stream, streamType: Literal["speaker", "microphone"], css
     )
 
 
-def VolumeSlider(streamType: Literal["speaker", "microphone"] = "speaker", css_classes: list[str] = [], **kwargs) -> Widget.Box:
+def VolumeSlider(streamType: Literal["speaker", "microphone"] = "speaker", css_classes: list[str] = [], **kwargs) -> widgets.Box:
     stream = getattr(audio, streamType)
 
-    icon = Widget.Button(
+    icon = widgets.Button(
         child=AudioDeviceIcon(streamType),
         on_click=lambda _: stream.set_is_muted(not stream.is_muted),
         css_classes=["slider-icon"],
     )
 
-    scale = Widget.Scale(
+    scale = widgets.Scale(
         value=stream.bind("volume"),
         hexpand=True,
         sensitive=stream.bind("is_muted", lambda is_muted: not is_muted),
@@ -63,24 +63,24 @@ def VolumeSlider(streamType: Literal["speaker", "microphone"] = "speaker", css_c
         css_classes=["slider"],
     )
 
-    return Widget.Box(
+    return widgets.Box(
         child=[icon, scale],
         css_classes=css_classes + ["slider-container"],
         **kwargs,
     )
 
 
-def DeviceMenu(streamType: Literal["speaker", "microphone"] = "speaker", css_classes: list[str] = [], **kwargs) -> Widget.Box:
+def DeviceMenu(streamType: Literal["speaker", "microphone"] = "speaker", css_classes: list[str] = [], **kwargs) -> widgets.Box:
     header = MenuHeader(child=[
-        Widget.Icon(image=icons["audio"][streamType]["menu_icon"]),
+        widgets.Icon(image=icons["audio"][streamType]["menu_icon"]),
         MenuHeaderSeparator(),
-        Widget.Label(
+        widgets.Label(
             label=MENU_TITLES[streamType],
             halign="start",
         ),
     ])
 
-    content = Widget.Box(
+    content = widgets.Box(
         vertical=True,
         setup=lambda self: audio.connect(
             f"{streamType}-added",
@@ -89,7 +89,7 @@ def DeviceMenu(streamType: Literal["speaker", "microphone"] = "speaker", css_cla
         ),
     )
 
-    return Widget.Box(
+    return widgets.Box(
         name=f"volume-{streamType}",
         vertical=True,
         child=[header, content],

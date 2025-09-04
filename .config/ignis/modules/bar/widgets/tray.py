@@ -1,11 +1,11 @@
+from ignis import widgets
 from ignis.services.system_tray import SystemTrayItem, SystemTrayService
-from ignis.widgets import Widget
 from modules import globals
 
 system_tray = SystemTrayService.get_default()
 
 
-def TrayItem(item: SystemTrayItem, css_classes: list[str] = [], **kwargs) -> Widget.Button:
+def TrayItem(item: SystemTrayItem, css_classes: list[str] = [], **kwargs) -> widgets.Button:
     if item.menu:
         menu = item.menu
 
@@ -17,11 +17,11 @@ def TrayItem(item: SystemTrayItem, css_classes: list[str] = [], **kwargs) -> Wid
         globals.currentMenu.value = ""
         menu.popup()
 
-    return Widget.Button(
+    return widgets.Button(
         tooltip_text=item.bind("tooltip"),
-        child=Widget.Box(
+        child=widgets.Box(
             child=[
-                Widget.Icon(image=item.bind("icon")),
+                widgets.Icon(image=item.bind("icon")),
                 menu,
             ]
         ),
@@ -33,8 +33,8 @@ def TrayItem(item: SystemTrayItem, css_classes: list[str] = [], **kwargs) -> Wid
     )
 
 
-def Tray(**kwargs) -> Widget.Box:
-    return Widget.Box(
+def Tray(**kwargs) -> widgets.Box:
+    return widgets.Box(
         setup=lambda self: system_tray.connect(
             "added", lambda _, item: self.append(TrayItem(item))
         ),

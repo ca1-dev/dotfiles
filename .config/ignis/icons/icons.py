@@ -1,7 +1,8 @@
+from ignis import widgets
 from ignis.options import options
 from ignis.services.audio import AudioService
 from ignis.services.notifications import NotificationService
-from ignis.widgets import Widget
+
 import os.path
 
 audio = AudioService.get_default()
@@ -58,24 +59,24 @@ def set_microphone_icon(_) -> str:
     return icons["audio"]["microphone"]["unmuted"]
 
 
-def AudioDeviceIcon(type) -> Widget.Icon:
+def AudioDeviceIcon(type) -> widgets.Icon:
     if type == "speaker":
-        return Widget.Icon(
+        return widgets.Icon(
             image=audio.speaker.bind("icon_name", speaker_icon_image)
         )
 
     if type == "microphone":
-        return Widget.Icon(
+        return widgets.Icon(
             image=audio.microphone.bind("icon_name", set_microphone_icon)
         )
 
 
-def NotificationsIcon() -> Widget.Box:
-    dndOn = Widget.Icon(
+def NotificationsIcon() -> widgets.Box:
+    dndOn = widgets.Icon(
         image=icons["notifications"]["tray"]["dnd"],
         visible=options.notifications.bind("dnd"),
     )
-    dndOff = Widget.Icon(
+    dndOff = widgets.Icon(
         image=notifications.bind(
             "notifications",
             lambda notifications:
@@ -88,7 +89,7 @@ def NotificationsIcon() -> Widget.Box:
             lambda dndEnabled: not dndEnabled,
         ),
     )
-    return Widget.Box(
+    return widgets.Box(
         child=[
             dndOn,
             dndOff,

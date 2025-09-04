@@ -1,10 +1,10 @@
 from gi.repository import Graphene
-from ignis.widgets import Widget
+from ignis import widgets
 from modules.widgets import FloatingWindow
 
 
-class DropdownWidget(Widget.Button):
-    def __init__(self, namespace: str = "", child: Widget = Widget.Box(), icon: Widget.Icon = Widget.Icon(), monitor: int = 0, **kwargs) -> None:
+class DropdownWidget(widgets.Button):
+    def __init__(self, namespace: str = "", child=widgets.Box(), icon: widgets.Icon = widgets.Icon(), monitor: int = 0, **kwargs) -> None:
         super().__init__(child=icon, **kwargs)
         self.dropdown = FloatingWindow(
             monitor=monitor, namespace=namespace, child=child

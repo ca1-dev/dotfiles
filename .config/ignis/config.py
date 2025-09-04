@@ -1,17 +1,17 @@
 from icons import AudioDeviceIcon, NotificationsIcon
-from ignis.app import IgnisApp
-from ignis.widgets import Widget
+from ignis import widgets, utils
+from ignis.css_manager import CssManager, CssInfoPath
 from modules import Bar
 from modules.bar.widgets import Clock, NotificationWidget, StatusPill, StatusPillClock, Tray, VolumeWidget, Workspaces
 from modules.widgets import ControlCenter, DeviceMenu, MenuHeader, MenuSeparator, NotificationCenter, NotificationPopup, VolumeSlider
 
 import os.path
 
-app = IgnisApp.get_default()
+css_manager = CssManager.get_default()
 
 ControlCenter(
     widgets=[
-        MenuHeader(child=[Widget.Label(label="Volume")]),
+        MenuHeader(child=[widgets.Label(label="Volume")]),
         VolumeSlider("speaker"),
         VolumeSlider("microphone"),
         MenuSeparator(),
@@ -43,6 +43,11 @@ Bar(
 NotificationPopup(0)
 
 
-app.apply_css(
-    os.path.dirname(__file__) + "/scss/themes/" + os.getenv("THEME") + ".scss"
+css_manager.apply_css(
+    CssInfoPath(
+        name="main",
+        path=os.path.dirname(__file__) + "/scss/themes/" +
+        os.getenv("THEME") + ".scss",
+        compiler_function=lambda path: utils.sass_compile(path=path),
+    )
 )

@@ -1,19 +1,17 @@
 from .floatingwindow import FloatingWindow
-from ignis.app import IgnisApp
-from ignis.widgets import Widget
 
-app = IgnisApp.get_default()
+import ignis
 
 
 class ControlCenter(FloatingWindow):
-    def __init__(self, widgets: list[Widget] = [], css_classes: list[str] = [], **kwargs) -> None:
+    def __init__(self, widgets=[], css_classes=[], **kwargs) -> None:
         namespace = "ignis_CONTROL_CENTER"
 
         super().__init__(
             monitor=0,
             namespace=namespace,
             child=[
-                Widget.Box(
+                ignis.widgets.Box(
                     vertical=True,
                     vexpand=True,
                     child=widgets,

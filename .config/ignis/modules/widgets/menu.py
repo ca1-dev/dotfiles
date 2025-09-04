@@ -1,23 +1,23 @@
-from ignis.widgets import Widget
+from ignis import widgets
 
 
-def MenuHeader(child: list[Widget] = [], css_classes: list[str] = [], **kwargs) -> Widget.Box:
-    return Widget.Box(
+def MenuHeader(child=[], css_classes: list[str] = [], **kwargs) -> widgets.Box:
+    return widgets.Box(
         css_classes=css_classes + ["menu-header"],
         child=child,
         **kwargs,
     )
 
 
-def MenuHeaderSeparator(css_classes: list[str] = [], **kwargs) -> Widget.Box:
-    return Widget.Box(
+def MenuHeaderSeparator(css_classes: list[str] = [], **kwargs) -> widgets.Box:
+    return widgets.Box(
         css_classes=css_classes + ["menu-header-separator"],
         **kwargs
     )
 
 
-def MenuSeparator(css_classes: list[str] = [], **kwargs) -> Widget.Box:
-    return Widget.Box(
+def MenuSeparator(css_classes: list[str] = [], **kwargs) -> widgets.Box:
+    return widgets.Box(
         css_classes=css_classes + ["menu-separator"],
         **kwargs
     )

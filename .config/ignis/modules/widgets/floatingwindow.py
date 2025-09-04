@@ -1,18 +1,17 @@
-from ignis.utils import Utils
-from ignis.widgets import Widget
+from ignis import utils, widgets
 from modules import globals
 from modules.widgets import ClickOffArea
 
 
-class FloatingWindow(Widget.Window):
-    def __init__(self, monitor: int = 0, namespace: str = "", child: Widget = Widget.Box(), **kwargs) -> None:
+class FloatingWindow(widgets.Window):
+    def __init__(self, monitor: int = 0, namespace: str = "", child=widgets.Box(), **kwargs) -> None:
 
         self.clickOffAreaLeft = ClickOffArea(namespace=namespace)
         self.clickOffAreaRight = ClickOffArea(namespace=namespace)
         self.clickOffAreaTop = ClickOffArea(namespace=namespace, height=0,)
         self.clickOffAreaBottom = ClickOffArea(namespace=namespace)
 
-        self.content = Widget.Box(
+        self.content = widgets.Box(
             vertical=True,
             child=child,
             css_classes=["floating-window"],
@@ -20,7 +19,7 @@ class FloatingWindow(Widget.Window):
 
         box = [
             self.clickOffAreaLeft,
-            Widget.Box(
+            widgets.Box(
                 vertical=True,
                 child=[
                     self.clickOffAreaTop,
@@ -28,7 +27,7 @@ class FloatingWindow(Widget.Window):
                     self.clickOffAreaBottom,
                 ]
             ),
-            Widget.EventBox(),
+            widgets.EventBox(),
             self.clickOffAreaRight,
         ]
 
@@ -40,7 +39,7 @@ class FloatingWindow(Widget.Window):
             kb_mode="on_demand",
             visible=False,
             popup=True,
-            child=Widget.Box(child=box),
+            child=widgets.Box(child=box),
             **kwargs,
         )
 
@@ -65,7 +64,7 @@ class FloatingWindow(Widget.Window):
             self.visible = False
 
     def set_position_x(self, middle: int) -> None:
-        monitorWidth = Utils.get_monitor(self.monitor).get_geometry().width
+        monitorWidth = utils.get_monitor(self.monitor).get_geometry().width
         size = self.content.get_preferred_size().natural_size
         width = size.width
 
@@ -77,7 +76,7 @@ class FloatingWindow(Widget.Window):
             self.clickOffAreaLeft.set_width(middle - width / 2)
 
     def set_position_y(self, middle: int) -> None:
-        monitorHeight = Utils.get_monitor(self.monitor).get_geometry().height
+        monitorHeight = utils.get_monitor(self.monitor).get_geometry().height
         size = self.content.get_preferred_size().natural_size
         height = size.height
 

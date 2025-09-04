@@ -1,17 +1,16 @@
 from gi.repository import GLib
 from icons import icons
+from ignis import utils, widgets
 from ignis.options import options
 from ignis.services.notifications import Notification, NotificationService
-from ignis.utils import Utils
-from ignis.widgets import Widget
 from modules.widgets import MenuHeader, MenuHeaderSeparator, MenuSeparator, NotificationCard
 
 notifications = NotificationService.get_default()
 
 
-class NotificationList(Widget.Box):
+class NotificationList(widgets.Box):
     def __init__(self, css_classes: list[str] = [], **kwargs) -> None:
-        loading_notifications_label = Widget.Label(
+        loading_notifications_label = widgets.Label(
             valign="center",
             vexpand=True,
             label="Loading notifications...",
@@ -30,7 +29,7 @@ class NotificationList(Widget.Box):
             **kwargs,
         )
 
-        Utils.ThreadTask(
+        utils.ThreadTask(
             self.load_notifications,
             lambda result: self.set_child(result),
         ).run()
@@ -39,12 +38,13 @@ class NotificationList(Widget.Box):
         self.prepend(NotificationCard(notification))
 
     def load_notifications(self) -> None:
-        widgets = []
+        notificationWidgets = []
         for i in notifications.notifications:
-            GLib.idle_add(lambda i=i: widgets.append(NotificationCard(i)))
+            GLib.idle_add(lambda i=i: notificationWidgets.append(
+                NotificationCard(i)))
 
-        widgets.append(
-            Widget.Label(
+        notificationWidgets.append(
+            widgets.Label(
                 valign="center",
                 vexpand=True,
                 visible=notifications.bind(
@@ -55,18 +55,18 @@ class NotificationList(Widget.Box):
             )
         )
 
-        return widgets
+        return notificationWidgets
 
 
-def NotificationCenter(css_classes: list[str] = [], **kwargs) -> Widget.Box:
-    notificationCount = Widget.Label(
+def NotificationCenter(css_classes: list[str] = [], **kwargs) -> widgets.Box:
+    notificationCount = widgets.Label(
         label=notifications.bind(
             "notifications",
             lambda value: str(len(value)),
         ),
     )
 
-    header = Widget.Label(
+    header = widgets.Label(
         label=notifications.bind(
             "notifications",
             lambda notifications:
@@ -76,8 +76,8 @@ def NotificationCenter(css_classes: list[str] = [], **kwargs) -> Widget.Box:
         ),
     )
 
-    dndButton = Widget.Button(
-        child=Widget.Icon(
+    dndButton = widgets.Button(
+        child=widgets.Icon(
             image=options.notifications.bind(
                 "dnd",
                 lambda dndEnabled:
@@ -91,13 +91,13 @@ def NotificationCenter(css_classes: list[str] = [], **kwargs) -> Widget.Box:
         css_classes=["notification-dnd"],
     )
 
-    clearAllButton = Widget.Button(
-        child=Widget.Label(label="Clear all"),
+    clearAllButton = widgets.Button(
+        child=widgets.Label(label="Clear all"),
         on_click=lambda _: notifications.clear_all(),
         css_classes=["notification-clear-all"],
     )
 
-    return Widget.Box(
+    return widgets.Box(
         vertical=True,
         vexpand=True,
         child=[
@@ -107,7 +107,7 @@ def NotificationCenter(css_classes: list[str] = [], **kwargs) -> Widget.Box:
                     MenuHeaderSeparator(),
                     header,
                     MenuHeaderSeparator(),
-                    Widget.Box(
+                    widgets.Box(
                         child=[
                             dndButton,
                             MenuHeaderSeparator(),
@@ -119,7 +119,7 @@ def NotificationCenter(css_classes: list[str] = [], **kwargs) -> Widget.Box:
                 ],
             ),
             MenuSeparator(),
-            Widget.Scroll(
+            widgets.Scroll(
                 child=NotificationList(),
                 vexpand=True,
             ),

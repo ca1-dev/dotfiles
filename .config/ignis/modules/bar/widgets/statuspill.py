@@ -1,19 +1,20 @@
-from ignis.app import IgnisApp
-from ignis.widgets import Widget
+from ignis.window_manager import WindowManager
 
-app = IgnisApp.get_default()
+import ignis
+
+window_manager = WindowManager.get_default()
 
 
-class StatusPill(Widget.Button):
-    def __init__(self, monitor: int = 0, widgets: list[Widget] = [], css_classes: list[str] = [], **kwargs):
+class StatusPill(ignis.widgets.Button):
+    def __init__(self, monitor: int = 0, widgets=[], css_classes: list[str] = [], **kwargs):
         for w in widgets:
             w.add_css_class("status-pill-widget")
 
         self.monitor = monitor
-        self.window: Widget.Window = app.get_window("ignis_CONTROL_CENTER")
+        self.window = window_manager.get_window("ignis_CONTROL_CENTER")
 
         super().__init__(
-            child=Widget.Box(child=widgets),
+            child=ignis.widgets.Box(child=widgets),
             css_classes=css_classes + ["bar-widget", "bar-status-pill"],
             **kwargs,
         )

@@ -1,15 +1,15 @@
+from ignis import widgets
 from ignis.services.hyprland import HyprlandService
-from ignis.widgets import Widget
 from modules import globals
 
 hyprland = HyprlandService.get_default()
 
 
-class WorkspaceButton(Widget.Button):
+class WorkspaceButton(widgets.Button):
     def __init__(self, workspace: dict, css_classes: list[str] = [], **kwargs) -> None:
         self.id = workspace.id
 
-        self.icon = Widget.Box(
+        self.icon = widgets.Box(
             css_classes=hyprland.bind_many(
                 ["windows", "active_window"],
                 transform=lambda *_: ["bar-workspace-button-inner", "non-empty"] if len(
@@ -46,9 +46,9 @@ def workspace_prev() -> None:
     hyprland.switch_to_workspace(hyprland.active_workspace.id - 1)
 
 
-def Workspaces(css_classes: list[str] = [], **kwargs) -> Widget.EventBox:
+def Workspaces(css_classes: list[str] = [], **kwargs) -> widgets.EventBox:
     if hyprland.is_available:
-        box = Widget.EventBox(
+        box = widgets.EventBox(
             on_scroll_up=lambda _: workspace_next(),
             on_scroll_down=lambda _: workspace_prev(),
 
@@ -62,5 +62,5 @@ def Workspaces(css_classes: list[str] = [], **kwargs) -> Widget.EventBox:
             **kwargs,
         )
     else:
-        box = Widget.EventBox()
+        box = widgets.EventBox()
     return box

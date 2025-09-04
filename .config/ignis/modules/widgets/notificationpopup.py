@@ -1,18 +1,18 @@
 from .notificationcard import NotificationCard
+from ignis import widgets
 from ignis.services.notifications import Notification, NotificationService
-from ignis.widgets import Widget
 
 notifications = NotificationService.get_default()
 
 
-class NotificationPopup(Widget.Window):
+class NotificationPopup(widgets.Window):
     def __init__(self, monitor: int = 0, **kwargs) -> None:
         super().__init__(
             anchor=["right", "top"],
             monitor=monitor,
             namespace=f"ignis_NOTIFICATION_POPUP_{monitor}",
             layer="top",
-            child=Widget.Box(
+            child=widgets.Box(
                 vertical=True,
                 valign="start",
                 css_classes=["notification-popup"],

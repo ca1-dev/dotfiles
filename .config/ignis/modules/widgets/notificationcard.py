@@ -1,11 +1,11 @@
 from icons import icons
+from ignis import widgets
 from ignis.services.notifications import Notification
-from ignis.widgets import Widget
 from typing import Literal
 
 
-def NotificationCard(notification: Notification, closeOn: Literal["closed", "dismissed"] = "closed", css_classes: list[str] = [], **kwargs) -> Widget.Box:
-    notificationIcon = Widget.Icon(
+def NotificationCard(notification: Notification, closeOn: Literal["closed", "dismissed"] = "closed", css_classes: list[str] = [], **kwargs) -> widgets.Box:
+    notificationIcon = widgets.Icon(
         image=notification.icon
         if notification.icon
         else icons["notifications"]["card"]["placeholder"],
@@ -14,16 +14,16 @@ def NotificationCard(notification: Notification, closeOn: Literal["closed", "dis
         valign="start",
     )
 
-    notificationContent = Widget.Box(
+    notificationContent = widgets.Box(
         vertical=True,
         child=[
-            Widget.Label(
+            widgets.Label(
                 ellipsize="end",
                 halign="start",
                 visible=notification.summary != "",
                 label=notification.summary,
             ),
-            Widget.Label(
+            widgets.Label(
                 ellipsize="end",
                 halign="start",
                 visible=notification.body != "",
@@ -34,11 +34,11 @@ def NotificationCard(notification: Notification, closeOn: Literal["closed", "dis
         css_classes=["notification-content"],
     )
 
-    dismissButton = Widget.Button(
+    dismissButton = widgets.Button(
         halign="end",
         valign="start",
         hexpand=True,
-        child=Widget.Icon(
+        child=widgets.Icon(
             image=icons["notifications"]["card"]["dismiss"],
             pixel_size=20
         ),
@@ -46,12 +46,12 @@ def NotificationCard(notification: Notification, closeOn: Literal["closed", "dis
         css_classes=["notification-close"],
     )
 
-    actionButtons = Widget.Box(
+    actionButtons = widgets.Box(
         homogeneous=True,
         spacing=10,
         child=[
-            Widget.Button(
-                child=Widget.Label(label=action.label),
+            widgets.Button(
+                child=widgets.Label(label=action.label),
                 on_click=lambda _: action.invoke(),
                 css_classes=["notification-action"],
             )
@@ -60,11 +60,11 @@ def NotificationCard(notification: Notification, closeOn: Literal["closed", "dis
         css_classes=["notification-actions"],
     )
 
-    return Widget.Box(
+    return widgets.Box(
         vertical=True,
         hexpand=True,
         child=[
-            Widget.Box(
+            widgets.Box(
                 child=[
                     notificationIcon,
                     notificationContent,
