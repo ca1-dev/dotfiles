@@ -5,7 +5,7 @@ accent_tertiary=magenta
 source ~/.config/zsh/themes/$THEME.zsh 2> /dev/null
 
 # completion
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -d ~/.cache/zsh/zcompdump
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}'
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -18,7 +18,7 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 # history
-HISTFILE=~/.zsh_history
+HISTFILE=~/.cache/zsh/zsh_history
 HISTSIZE=1000
 SAVEHIST=$HISTSIZE
 setopt sharehistory
