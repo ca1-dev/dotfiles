@@ -7,8 +7,8 @@ from typing import Literal
 audio = AudioService.get_default()
 
 MENU_TITLES = {
-    "speaker": "Sources",
-    "microphone": "Sinks",
+    "speaker": "Sinks",
+    "microphone": "Sources",
 }
 
 
