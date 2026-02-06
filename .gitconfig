@@ -2,3 +2,8 @@
 	name = ca1
 	email = ca1@ca1.dev
 
+[includeIf "gitdir:~/code/uni/"]
+    path = ~/.gitconfig-uni
+
+[includeIf "gitdir:~/code/work/"]
+    path = ~/.gitconfig-work
