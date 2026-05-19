@@ -1,9 +1,3 @@
-# colours, set default if $THEME file not found
-accent_primary=blue
-accent_secondary=magenta
-accent_tertiary=magenta
-source ~/.config/zsh/themes/$THEME.zsh 2> /dev/null
-
 # completion
 autoload -Uz compinit && compinit -d ~/.cache/zsh/zcompdump
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}'
@@ -34,11 +28,25 @@ alias gs='git status'
 alias gl='git log --oneline --graph'
 alias dev='nix develop -c zsh'
 alias pfetch='PF_INFO="ascii title os shell wm editor palette" pfetch'
+alias todo='cat ~/todo.md'
+
+alias mutt0='ACCOUNT_NUMBER=0 neomutt'
+alias mutt1='ACCOUNT_NUMBER=1 neomutt'
+alias mutt2='ACCOUNT_NUMBER=2 neomutt'
+alias mutt3='ACCOUNT_NUMBER=3 neomutt'
+alias mutt4='ACCOUNT_NUMBER=4 neomutt'
+alias mutt5='ACCOUNT_NUMBER=5 neomutt'
+alias mutt6='ACCOUNT_NUMBER=6 neomutt'
+alias mutt7='ACCOUNT_NUMBER=7 neomutt'
+alias mutt8='ACCOUNT_NUMBER=8 neomutt'
 
 # general settings
 unsetopt beep
 bindkey -v
 setopt autocd
+
+bindkey -M vicmd 'K' history-beginning-search-backward
+bindkey -M vicmd 'J' history-beginning-search-forward
 
 # environment variables
 export EDITOR='nvim'
@@ -52,7 +60,7 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' check-for-changes true
 
 zstyle ':vcs_info:*' formats '  %b%u%c'
-zstyle ':vcs_info:*' actionformats 'hi'
+zstyle ':vcs_info:*' actionformats '  %b%u%c %F{red}(%a %m)'
 zstyle ':vcs_info:*' stagedstr ' %F{yellow}+'
 zstyle ':vcs_info:*' unstagedstr ' %F{yellow}!'
 
@@ -80,3 +88,12 @@ source ~/.config/zsh/local.zsh 2> /dev/null
 source '/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh' 2> /dev/null
 source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" 2> /dev/null
 eval "$(zoxide init zsh 2> /dev/null)"
+
+. "$HOME/.local/bin/env"
+
+# colours, set default if $THEME file not found
+accent_primary=blue
+accent_secondary=magenta
+accent_tertiary=magenta
+source ~/.config/zsh/themes/$THEME.zsh 2> /dev/null
+
