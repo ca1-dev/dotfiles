@@ -16,6 +16,7 @@ local config = wezterm.config_builder()
 -- general options
 config.audible_bell = 'Disabled'
 config.check_for_updates = false
+config.warn_about_missing_glyphs = false
 
 -- visual
 theme(config)
